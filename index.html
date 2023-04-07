@@ -49,7 +49,14 @@
     <script>
       function createUniversalLink() {}
 
-      async function shareMsg() {}
+      async function shareMsg() {
+        await liff.shareTargetPicker([
+          {
+            "type": "text",
+            "text": "this message was sent by ShareTargetPicker" 
+          }
+        ])
+      }
 
       function logOut() {
         liff.logout()
@@ -136,7 +143,7 @@
           getFriendship();
           createUniversalLink();
         } else {
-          liff.Login()
+          liff.login()
         }
       }
       main();

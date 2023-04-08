@@ -49,7 +49,6 @@
       console.log("Hello World!");
     </script>
 
-
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script>
       function createUniversalLink() {
@@ -146,17 +145,19 @@
       }
 
       async function main() {
+        liff.ready.then(() => {
+          document.getElementById("isLoggedIn").append(liff.isLoggedIn());
+          if (liff.isLoggedIn()) {
+            getEnvironment();
+            getUserProfile();
+            getContext();
+            getFriendship();
+            createUniversalLink();
+          } else {
+            liff.login();
+          }
+        });
         await liff.init({ liffId: "1660843388-jQWkJJll" });
-        document.getElementById("isLoggedIn").append(liff.isLoggedIn());
-        if (liff.isLoggedIn()) {
-          getEnvironment();
-          getUserProfile();
-          getContext();
-          getFriendship();
-          createUniversalLink();
-        } else {
-          liff.login();
-        }
       }
       main()
     </script>
